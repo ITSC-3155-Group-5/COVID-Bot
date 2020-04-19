@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.offline as pyo
 import plotly.graph_objs as go
 
-TOKEN = 'Njk3NTQyODY2MjYzODY3Mzky.XpyrQw.TuxQUdqQNjln0uFF5FVG6myvOc0'
+TOKEN = 'Discord Bot Token'
 GUILD = 'ITSC 3155'
 
 client = d.Client()
