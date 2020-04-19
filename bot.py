@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.offline as pyo
 import plotly.graph_objs as go
 
-TOKEN = 'Njk3NTQyODY2MjYzODY3Mzky.XptPmQ.Ck8u6bCnioFsAMkRUN-rNfGx7XA'
+TOKEN = 'Njk3NTQyODY2MjYzODY3Mzky.XpyrQw.TuxQUdqQNjln0uFF5FVG6myvOc0'
 GUILD = 'ITSC 3155'
 
 client = d.Client()
@@ -27,11 +27,11 @@ async def on_message(message):
     
     #help with commands
     if message.content == '!help':
-        helpMessage = '!linegraph - create a line graph with current data' + '\n' + '!barchart - create a bar graph with current graph' + '\n' + '!'
+        helpMessage = '!linechart - create a line chart with current data' + '\n' + '!barchart - create a bar chart with current data' + '\n' + '!'
         await message.channel.send(helpMessage)
     
-    #create a line graph
-    if message.content == '!linegraph':
+    #create a line chart
+    if message.content == '!linechart':
         df = pd.read_csv('CoronaTimeSeries.csv')
         df['Date'] = pd.to_datetime(df['Date'])
 
@@ -40,9 +40,9 @@ async def on_message(message):
         layout = go.Layout(title='Corona Virus Confirmed Cases From 2020-01-22 to 2020-03-17', xaxis_title='Date', yaxis_title="Number of Cases")
 
         fig = go.Figure(data=data, layout=layout)
-        fig.write_image("linechart.jpeg")
+        pyo.plot(fig, filename='linechart.html')
 
-        await message.channel.send(file=d.File('linechart.jpeg'))
+        await message.channel.send(file=d.File('linechart.html'))
         
     #create a barchart
     if message.content == '!barchart':
@@ -63,6 +63,6 @@ async def on_message(message):
         fig = go.Figure(data=data, layout=layout)
         pyo.plot(fig, filename='barchart.html')
         
-        await message.channel.send(d.Attachment("barchart.html"))
+        await message.channel.send(file=d.File('barchart.html'))
 
 client.run(TOKEN)
