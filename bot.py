@@ -2,8 +2,9 @@ import discord as d
 import pandas as pd
 import plotly.offline as pyo
 import plotly.graph_objs as go
+import orca
 
-TOKEN = 'Discord Bot Token'
+TOKEN = 'BOT_TOKEN'
 GUILD = 'ITSC 3155'
 
 client = d.Client()
@@ -40,9 +41,9 @@ async def on_message(message):
         layout = go.Layout(title='Corona Virus Confirmed Cases From 2020-01-22 to 2020-03-17', xaxis_title='Date', yaxis_title="Number of Cases")
 
         fig = go.Figure(data=data, layout=layout)
-        pyo.plot(fig, filename='linechart.html')
+        fig.write_image("fig2.png")
 
-        await message.channel.send(file=d.File('linechart.html'))
+        await message.channel.send(file=d.File('fig2.png'))
         
     #create a barchart
     if message.content == '!barchart':
@@ -61,8 +62,8 @@ async def on_message(message):
         layout = go.Layout(title='Corona Virus Confirmed Cases in The US', xaxis_title="States", yaxis_title="Number of confirmed cases")
 
         fig = go.Figure(data=data, layout=layout)
-        pyo.plot(fig, filename='barchart.html')
-        
-        await message.channel.send(file=d.File('barchart.html'))
+        fig.write_image("fig1.png")
+
+        await message.channel.send(file=d.File('fig1.png'))
 
 client.run(TOKEN)
