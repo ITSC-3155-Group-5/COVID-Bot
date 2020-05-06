@@ -2,7 +2,6 @@ import discord as d
 import pandas as pd
 import plotly.offline as pyo
 import plotly.graph_objs as go
-import orca
 
 TOKEN = 'BOT_TOKEN'
 GUILD = 'ITSC 3155'
